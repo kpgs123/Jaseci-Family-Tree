@@ -74,7 +74,7 @@
             "children": [],
             "spouse": null,
             "gender": "Female",
-            "hobbies": ["photography", "cooking", "bird watching"."painting"]
+            "hobbies": ["photography", "cooking", "bird watching","painting"]
         },
         {
             "uid": "0x5",
