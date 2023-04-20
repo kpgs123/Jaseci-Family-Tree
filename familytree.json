@@ -1,11 +1,11 @@
 {
     "families": [
         {
-            "family_name": "Irugal Bandaralage",
+            "family_name": "Vijethungamge",
             "uid": "0x1"
         },
         {
-            "family_name": "Jayalath Mudiyanselage",
+            "family_name": "Mallikarachchi",
             "uid": "0x2"
         }
     ],
@@ -13,9 +13,9 @@
         {
             "uid": "0x1",
             "family_id": "0x1",
-            "name": "Chandra Irugalbandara",
-            "date_of_birth": "1996-02-10",
-            "profession": "Machine Learning Engineer",
+            "name": "Chanaka vijethunga",
+            "date_of_birth": "1997-07-16",
+            "profession": "Aerospace Engineer",
             "parents": {
                 "father": "0x2",
                 "mother": "0x3"
@@ -29,11 +29,11 @@
         {
             "uid": "0x2",
             "family_id": "0x1",
-            "name": "Sujeewa Rathnakumara",
-            "date_of_birth": "1966-02-10",
-            "profession": "Mechanical Engineer",
+            "name": "Saman vijethunga",
+            "date_of_birth": "1950-04-07",
+            "profession": "Firefighter",
             "parents": null,
-            "deceased": true,
+            "deceased": false,
             "children": [
                 "0x1",
                 "0x4",
@@ -46,8 +46,8 @@
         {
             "uid": "0x3",
             "family_id": "0x2",
-            "name": "Damayanthi Manike",
-            "date_of_birth": "1966-02-10",
+            "name": "Srimathi",
+            "date_of_birth": "1957-08-10",
             "profession": "Housewife",
             "parents": null,
             "deceased": false,
@@ -63,8 +63,8 @@
         {
             "uid": "0x4",
             "family_id": "0x1",
-            "name": "Vishwa Irugalbandara",
-            "date_of_birth": "1994-03-19",
+            "name": "Shanika vijethunga",
+            "date_of_birth": "1992-10-10",
             "profession": "Doctor",
             "parents": {
                 "father": "0x2",
@@ -79,9 +79,9 @@
         {
             "uid": "0x5",
             "family_id": "0x1",
-            "name": "Darsha Irugalbandara",
-            "date_of_birth": "1996-06-23",
-            "profession": "US Coast Guard Office",
+            "name": "Charith vijethunga",
+            "date_of_birth": "1998-05-17",
+            "profession": "student",
             "parents": {
                 "father": "0x2",
                 "mother": "0x3"
