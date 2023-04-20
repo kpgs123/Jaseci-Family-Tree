@@ -6,8 +6,8 @@ To add new fields and features to the app, we have gone through,
 JAC Language Syntax Reference
 
 26. Jac Language Basics 
-  #26.1. Error Handling in Jaseci
-  #26.2. Logs in Jaseci
+  26.1. Error Handling in Jaseci
+  26.2. Logs in Jaseci
   
 27. Data Structures in Jaseci
 28. Loops and Conditions in the jaseci documentation (docs.jaseci.org)
