@@ -1,91 +1,114 @@
-{
-    "families": [
-        {
-            "family_name": "Irugal Bandaralage",
-            "uid": "0x1"
-        },
-        {
-            "family_name": "Jayalath Mudiyanselage",
-            "uid": "0x2"
+import {*} with "./graph.jac";
+
+/* 
+walker run {
+    root {
+        family_tree = spawn here ++> graph::family_tree;
+        father = spawn node::person(
+            id = "6743482333V",
+            name = "John",
+            date_of_birth = "1967-01-01",
+            profession = "Engineer",
+            gender = "Male"
+        );
+        family_tree ++> father;
+        mother = spawn node::person(
+            id = "694343433V",
+            name = "Mary",
+            date_of_birth = "1969-01-01",
+            profession = "Architecture",
+            gender = "Female"
+        );
+        family_tree ++> mother;
+        father <+[married]+> mother;
+        son = spawn node::person(
+            id = "9643482333V",
+            name = "George",
+            date_of_birth = "1996-01-01",
+            profession = "Student",
+            gender = "Male"
+        );
+        family_tree ++> son;
+        father +[child]+> son;
+        mother +[child]+> son;
+    }
+} */
+
+
+
+walker create_familytree {
+    // creates a familytree from a json file
+    has data_file = "familytree.json";
+    has famly_members = [];
+
+    root {
+        families = file.load_json(data_file)["families"];
+        for family in families {
+            spawn here ++> node::family_root(
+                id = family["uid"],
+                family_name = family["family_name"]
+            );
         }
-    ],
-    "members": [
-        {
-            "uid": "0x1",
-            "family_id": "0x1",
-            "name": "Chandra Irugalbandara",
-            "date_of_birth": "1996-02-10",
-            "profession": "Machine Learning Engineer",
-            "parents": {
-                "father": "0x2",
-                "mother": "0x3"
-            },
-            "deceased": false,
-            "children": [],
-            "spouse": null,
-            "gender": "Male"
-        },
-        {
-            "uid": "0x2",
-            "family_id": "0x1",
-            "name": "Sujeewa Rathnakumara",
-            "date_of_birth": "1966-02-10",
-            "profession": "Mechanical Engineer",
-            "parents": null,
-            "deceased": true,
-            "children": [
-                "0x1",
-                "0x4",
-                "0x5"
-            ],
-            "spouse": "0x3",
-            "gender": "Male"
-        },
-        {
-            "uid": "0x3",
-            "family_id": "0x2",
-            "name": "Damayanthi Manike",
-            "date_of_birth": "1966-02-10",
-            "profession": "Housewife",
-            "parents": null,
-            "deceased": false,
-            "children": [
-                "0x1",
-                "0x4",
-                "0x5"
-            ],
-            "spouse": "0x2",
-            "gender": "Female"
-        },
-        {
-            "uid": "0x4",
-            "family_id": "0x1",
-            "name": "Vishwa Irugalbandara",
-            "date_of_birth": "1994-03-19",
-            "profession": "Doctor",
-            "parents": {
-                "father": "0x2",
-                "mother": "0x3"
-            },
-            "deceased": false,
-            "children": [],
-            "spouse": null,
-            "gender": "Female"
-        },
-        {
-            "uid": "0x5",
-            "family_id": "0x1",
-            "name": "Darsha Irugalbandara",
-            "date_of_birth": "1996-06-23",
-            "profession": "US Coast Guard Office",
-            "parents": {
-                "father": "0x2",
-                "mother": "0x3"
-            },
-            "deceased": false,
-            "children": [],
-            "spouse": null,
-            "gender": "Male"
+        take-->node::family_root;
+    }
+
+    family_root {
+        family_id = here.id;
+        members = file.load_json(data_file)["members"];
+        filtered_members = [];
+        for member in members {
+            if (member["family_id"] == family_id) {
+                filtered_members.list::append(member);
+            }
         }
-    ]
+        for member in filtered_members {
+            family_member = spawn here +[member]+> node::person(
+                id = member["uid"],
+                family_id = member["family_id"],
+                name = member["name"],
+                date_of_birth = member["date_of_birth"],
+                profession = member["profession"],
+                gender = member["gender"],
+                deceased = member["deceased"],
+                parents = member["parents"],
+                children = member["children"],
+                spouse = member["spouse"]
+            );
+            famly_members.list::append(family_member);
+        }
+    }
+
+    with exit {
+        for member_1 in famly_members {
+            for member_2 in famly_members {
+                if (member_1.id  == member_2.id): continue;
+                if (member_1.spouse == member_2.id and member_2.spouse == member_1.id) {
+                    member_1 +[married]+> member_2;
+                }
+                if (member_1.id in member_2.children): member_1 +[child]+> member_2;
+            }
+        }
+    }
+}
+
+walker find_coming_birthday {
+    // returns the upcoming birthdays of the family
+    has max_return = 5;
+    has anchor birthday_order = [];
+
+    root: take-->node::family_root;
+    family_root: take-->node::person;
+    person {
+        if (!here.deceased) {
+            here::get_days_to_birthday;
+            here::get_age;
+            birthday_order.l::append([here.days_to_birthday, here.age, here.name]);
+        }
+    }
+    with exit {
+        birthday_order = std.sort_by_col(birthday_order, 0);
+        birthday_order = birthday_order[0:max_return];
+        std.out(birthday_order);
+        report birthday_order;
+    }
 }
