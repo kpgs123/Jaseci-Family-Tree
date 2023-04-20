@@ -23,7 +23,8 @@
             "deceased": false,
             "children": [],
             "spouse": null,
-            "gender": "Male"
+            "gender": "Male",
+            "hobby":"photography"
         },
         {
             "uid": "0x2",
@@ -39,7 +40,8 @@
                 "0x5"
             ],
             "spouse": "0x3",
-            "gender": "Male"
+            "gender": "Male",
+            "hobby":"reading books"
         },
         {
             "uid": "0x3",
@@ -55,7 +57,8 @@
                 "0x5"
             ],
             "spouse": "0x2",
-            "gender": "Female"
+            "gender": "Female",
+            "hobby":"gardening"
         },
         {
             "uid": "0x4",
@@ -70,7 +73,8 @@
             "deceased": false,
             "children": [],
             "spouse": null,
-            "gender": "Female"
+            "gender": "Female",
+            "hobby":"photography"
         },
         {
             "uid": "0x5",
@@ -85,7 +89,8 @@
             "deceased": false,
             "children": [],
             "spouse": null,
-            "gender": "Male"
+            "gender": "Male",
+            "hobby":"hiking"
         }
     ]
 }
