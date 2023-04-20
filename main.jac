@@ -37,7 +37,7 @@ walker create_familytree {
                 parents = member["parents"],
                 children = member["children"],
                 spouse = member["spouse"],
-                hobby = member["hobby"]
+                hobbies = member["hobbies"]
             );
             famly_members.list::append(family_member);
         }

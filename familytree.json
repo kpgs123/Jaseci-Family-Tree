@@ -24,7 +24,7 @@
             "children": [],
             "spouse": null,
             "gender": "Male",
-            "hobby":"photography"
+            "hobbies": ["reading books", "Watching movies", "frame"]
         },
         {
             "uid": "0x2",
@@ -41,7 +41,7 @@
             ],
             "spouse": "0x3",
             "gender": "Male",
-            "hobby":"reading books"
+            "hobbies": ["reading books", "tinkering", "surfing"]
         },
         {
             "uid": "0x3",
@@ -58,7 +58,7 @@
             ],
             "spouse": "0x2",
             "gender": "Female",
-            "hobby":"gardening"
+            "hobbies": ["gardening", "cooking", "Watching movies"]
         },
         {
             "uid": "0x4",
@@ -74,7 +74,7 @@
             "children": [],
             "spouse": null,
             "gender": "Female",
-            "hobby":"photography"
+            "hobbies": ["photography", "cooking", "bird watching"]
         },
         {
             "uid": "0x5",
@@ -90,7 +90,7 @@
             "children": [],
             "spouse": null,
             "gender": "Male",
-            "hobby":"hiking"
+            "hobbies": ["hiking", "photography", "mountain biking"]
         }
     ]
 }
