@@ -77,3 +77,24 @@ walker find_coming_birthday {
         report birthday_order;
     }
 }
+
+walker each_hobby_and_persons {
+    // reurn dictionary with each hobbie and persons who do that hobby.
+    has max_return = 5;
+    has anchor hobbies_dict = {};
+
+    root: take-->node::family_root;
+    family_root: take-->node::person;
+    person {
+        for hobby in here.hobbies {
+            if (hobby not in hobbies_dict) {
+                hobbies_dict[hobby] = [];
+            }
+            hobbies_dict[hobby].list::append(here.name);
+        }
+    }
+    with exit {
+        std.out(hobbies_dict);
+        report hobbies_dict;
+    }
+}
