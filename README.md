@@ -14,6 +14,5 @@ JAC Language Syntax Reference
 
 The contents of main.jac, familytree.json and graph.jac files and the demonstration of new features can be explored from below video.
 
-
 https://user-images.githubusercontent.com/65505870/233447838-7302895c-a1c0-4bc6-bc47-4ec5c16d3272.mp4
 
